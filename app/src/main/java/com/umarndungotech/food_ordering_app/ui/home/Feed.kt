@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberBasicTooltipState
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.umarndungotech.food_ordering_app.models.Filter
 import com.umarndungotech.food_ordering_app.models.FoodCollection
 import com.umarndungotech.food_ordering_app.models.FoodRepo
+import com.umarndungotech.food_ordering_app.ui.components.FilterBar
 
 @Composable
 fun Feed(
@@ -76,6 +79,14 @@ private fun FoodCollectionList(
                             WindowInsets.statusBars.add(WindowInsets(top=56.dp))
                         )
                 )
+                FilterBar(filter = filters) {
+                    filtersVisible = true
+                }
+            }
+            itemsIndexed(foodCollection) {index: Int, foodCollection: FoodCollection ->
+                if (index > 0){
+                    Divider(thickness = 2.dp)
+                }
             }
         }
     }

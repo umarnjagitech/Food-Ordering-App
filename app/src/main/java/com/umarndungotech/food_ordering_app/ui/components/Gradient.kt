@@ -1,13 +1,19 @@
 package com.umarndungotech.food_ordering_app.ui.components
 
+import android.icu.text.ListFormatter.Width
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.offset
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 
 fun Modifier.diagonalGradientBorder(
@@ -36,3 +42,18 @@ fun Modifier.fadeInGradientBorder(
 
     diagonalGradientBorder(colors, borderSize, shape)
 }
+
+@Composable
+fun Modifier.offsetGradientBackground(
+    colors: List<Color>,
+    width: Float,
+    offset: Float
+
+) = background(
+    brush = Brush.horizontalGradient(
+        colors = colors,
+        startX = -offset,
+        endX = width - offset,
+        tileMode = TileMode.Mirror
+    )
+)
